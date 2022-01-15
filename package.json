@@ -20,7 +20,7 @@
     "url": "https://github.com/PandolfoM/half-foods/issues"
   },
   "homepage": "https://github.com/PandolfoM/half-foods#readme",
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^7.0.0"
   }
 }
