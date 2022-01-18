@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Auth from "../utils/auth";
-import { useMutation } from "@apollo/client";
+import { Form, Row, Col, Card, Button } from "react-bootstrap";
 import { searchFoodProducts, searchFoodProducts2 } from "../utils/api";
 
 function Home() {
   const [searchedFood, setSearchedFood] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  let food;
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -16,86 +14,68 @@ function Home() {
     }
 
     try {
-      searchFoodProducts(searchInput).then(function (response) {
+      searchFoodProducts(searchInput)
+        .then(function (response) {
           if (response.ok) {
             return response.json();
           } else {
             throw new Error("something went wrong");
           }
-        }).then(function (data) {
-          food = data
-
-          let foodData = food.results.map(food => ({
-            foodId: food.id
-          }))
-
-          for (let i = 0; i < foodData.length; i++) {
-            let foodIds = foodData[i].foodId
-            return searchFoodProducts2(foodIds)
-          }
-        }).then(function (response) {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("something went wrong");
-          }
-        }).then(function (data) {
-          
-          console.log(food, data);
-          let foodData = food.results.map(food => ({
+        })
+        .then(function (data) {
+          let foodData = data.results.map((food) => ({
             foodId: food.id,
             foodName: food.name,
             foodImage: food.image,
-          }))
-          setSearchedFood(foodData)
-        }).catch (function (err) {
-          console.error(err)
+          }));
+
+          setSearchedFood(foodData);
         })
-
-
-      // const { results } = await response.json();
-
-      // const foodData = results.map((food) => ({
-      //   foodId: food.id,
-      //   foodName: food.name,
-      //   foodImage: food.image,
-      // }));
+        .catch(function (err) {
+          console.error(err);
+        });
 
       setSearchInput("");
     } catch (err) {
       console.error(err);
     }
   };
-
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <input
+      <Form onSubmit={handleFormSubmit} className="m-3">
+        <Form.Group>
+          <Form.Control
             placeholder="Search"
+            aria-label="Search"
             value={searchInput}
-            name="search"
-            type="text"
             onChange={(e) => setSearchInput(e.target.value)}
           />
-        </div>
-      </form>
-      <h2>{searchedFood.length ? `${searchedFood.length} results:` : null}</h2>
-      <ul>
+        </Form.Group>
+      </Form>
+      <h2 className="mx-5">{searchedFood.length ? `${searchedFood.length} results:` : null}</h2>
+      <Row xs={1} md={6} className="m-5">
         {searchedFood.map((food) => {
-          return (
-            <li key={food.foodId}>
+         return (<Col key={food.foodId}>
+            <Card>
               {food.foodImage ? (
-                <img
+                <Card.Img
+                  variant="top"
+                  className="p-3"
                   src={`https://spoonacular.com/cdn/ingredients_250x250/${food.foodImage}`}
                   alt={food.foodName}
+                  width={'75px'}
+                  height={'160px'}
                 />
               ) : null}
-              <h5>{food.foodName}</h5>
-            </li>
-          );
+              <Card.Body>
+                <Card.Title>{food.foodName[0].toUpperCase()+ food.foodName.substring(1)}</Card.Title>
+                <Button className="w-100 mb-1" variant="outline-success">View Item</Button>
+                <Button className="w-100" variant="outline-success">Add to Cart</Button>
+              </Card.Body>
+            </Card>
+          </Col>)
         })}
-      </ul>
+      </Row>
     </div>
   );
 }

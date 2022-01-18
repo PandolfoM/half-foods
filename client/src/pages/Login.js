@@ -42,6 +42,7 @@ function Login(props) {
             name="email"
             type="email"
             id="email"
+            autoComplete='on'
             onChange={handleChange}
           />
         </div>
@@ -52,6 +53,7 @@ function Login(props) {
             name="password"
             type="password"
             id="pwd"
+            autoComplete='on'
             onChange={handleChange}
           />
         </div>

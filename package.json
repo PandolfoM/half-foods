@@ -22,5 +22,8 @@
   "homepage": "https://github.com/PandolfoM/half-foods#readme",
   "devDependencies": {
     "concurrently": "^7.0.0"
+  },
+  "dependencies": {
+    "react-redux": "^7.2.6"
   }
 }

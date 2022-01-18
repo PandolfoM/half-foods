@@ -43,6 +43,7 @@ function Signup(props) {
             name="firstName"
             type="firstName"
             id="firstName"
+            autoComplete='on'
             onChange={handleChange}
           />
         </div>
@@ -53,6 +54,7 @@ function Signup(props) {
             name="lastName"
             type="lastName"
             id="lastName"
+            autoComplete='on'
             onChange={handleChange}
           />
         </div>
@@ -63,6 +65,7 @@ function Signup(props) {
             name="email"
             type="email"
             id="email"
+            autoComplete='on'
             onChange={handleChange}
           />
         </div>
@@ -73,6 +76,7 @@ function Signup(props) {
             name="password"
             type="password"
             id="pwd"
+            autoComplete='on'
             onChange={handleChange}
           />
         </div>

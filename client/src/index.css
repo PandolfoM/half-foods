@@ -1,3 +1,7 @@
+:root {
+  --dark: #004e36
+}
+
 * {
   margin: 0%;
   padding: 0%;
@@ -5,31 +9,23 @@
   font-family: "Circular Pro", Verdana, sans-serif;
 }
 
-/* .flex-row {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.flex-nav {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-
-.flex-vcenter {
-  display: flex;
-  align-items: center;
-}
-
-a {
-  text-decoration: none;
-}
-
 li {
   list-style: none;
 }
 
-nav > ul > li {
-  margin-right: calc(1rem * 0.5);
-  margin-left: calc(1rem * 0.5);
-} */
+.nav-item > a {
+  text-decoration: none;
+  color: white;
+  border-bottom: 3px transparent solid;
+}
+
+.nav-item > a:hover {
+  color: white;
+  border-bottom: 3px white solid;
+}
+
+/* Nav Bar */
+.halfFoods {
+  text-decoration: none;
+  border-right: white solid 3px;
+}

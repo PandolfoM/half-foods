@@ -7,7 +7,6 @@ export const searchFoodProducts = (query) => {
 };
 
 export const searchFoodProducts2 = (id) => {
-  console.log(id);
   return fetch(
     `https://api.spoonacular.com/food/ingredients/${id}/information?amount=1&apiKey=${API_KEY}`
   );
