@@ -1,22 +1,11 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Order, Product } = require("../models");
+const { User, Product, Category, Order } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return await User.find()
-    },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findOne({_id: context.user._id})
-
-        // user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
-      }
-
-      throw new AuthenticationError("Not logged in");
+    categories: async () => {
+      return await Category.find();
     },
     products: async (parent, { category, name }) => {
       const params = {};
@@ -36,9 +25,26 @@ const resolvers = {
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: "orders.products",
+          populate: "category",
+        });
+
+        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+        return user;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
     order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id);
+        const user = await User.findById(context.user._id).populate({
+          path: "orders.products",
+          populate: "category",
+        });
 
         return user.orders.id(_id);
       }
@@ -63,6 +69,15 @@ const resolvers = {
         });
 
         return order;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
       }
 
       throw new AuthenticationError("Not logged in");

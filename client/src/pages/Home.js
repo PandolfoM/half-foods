@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Form, Row, Col, Card, Button } from "react-bootstrap";
-import { searchFoodProducts, searchFoodProducts2 } from "../utils/api";
 
 function Home() {
   const [searchedFood, setSearchedFood] = useState([]);
@@ -8,37 +7,6 @@ function Home() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    if (!searchInput) {
-      return false;
-    }
-
-    try {
-      searchFoodProducts(searchInput)
-        .then(function (response) {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("something went wrong");
-          }
-        })
-        .then(function (data) {
-          let foodData = data.results.map((food) => ({
-            foodId: food.id,
-            foodName: food.name,
-            foodImage: food.image,
-          }));
-
-          setSearchedFood(foodData);
-        })
-        .catch(function (err) {
-          console.error(err);
-        });
-
-      setSearchInput("");
-    } catch (err) {
-      console.error(err);
-    }
   };
   return (
     <div>

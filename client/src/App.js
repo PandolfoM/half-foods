@@ -37,11 +37,11 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <NavEL/>
+          <NavEL />
           <Routes>
-            <Route exact path="/" element={<Home/>}/>
-            <Route exact path="/signup" element={<Signup/>}/>
-            <Route exact path="/login" element={<Login/>}/>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/signup" element={<Signup />} />
+            <Route exact path="/login" element={<Login />} />
           </Routes>
         </div>
       </Router>
