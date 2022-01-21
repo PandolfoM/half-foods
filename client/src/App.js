@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
@@ -12,6 +12,9 @@ import NavEL from "./components/Nav";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -36,14 +39,16 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <NavEL />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/login" element={<Login />} />
-          </Routes>
-        </div>
+        <Provider store={store}>
+          <div>
+            <NavEL />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </div>
+        </Provider>
       </Router>
     </ApolloProvider>
   );

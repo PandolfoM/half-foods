@@ -9,6 +9,7 @@ const resolvers = {
     },
     products: async (parent, { category, name }) => {
       const params = {};
+      console.log(params);
 
       if (category) {
         params.category = category;

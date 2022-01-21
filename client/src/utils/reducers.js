@@ -1,5 +1,6 @@
 import {
   UPDATE_PRODUCTS,
+  UPDATE_CURRENT_PRODUCTS,
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
   ADD_TO_CART,
@@ -12,6 +13,7 @@ import {
 
 const initialState = {
   products: [],
+  currentProduct: "",
   cart: [],
   cartOpen: false,
   categories: [],
@@ -20,13 +22,16 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // if action type value is the value of `UPDATE_PRODUCTS`, return a new state object with an updated products array
     case UPDATE_PRODUCTS:
       return {
         ...state,
         products: [...action.products],
       };
-    // if action type value is the value of `UPDATE_CATEGORIES`, return a new state object with an updated categories array
+    case UPDATE_CURRENT_PRODUCTS:
+      return {
+        ...state,
+        currentProduct: action.currentProduct,
+      };
     case UPDATE_CATEGORIES:
       return {
         ...state,

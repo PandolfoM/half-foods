@@ -29,3 +29,17 @@ li {
   text-decoration: none;
   border-right: white solid 3px;
 }
+
+/* Item cards */
+.card-body > a {
+  text-decoration: none;
+  color: black;
+}
+
+.card-body  > a:hover {
+  color: #198754;
+}
+
+.card:hover {
+  box-shadow: inset 0 -4px 0 0 #198754; 
+}
