@@ -6,7 +6,7 @@ import { idbPromise } from "../../utils/helpers";
 import Details from "../Details";
 
 function ProductItem(item) {
-  const { image, name, _id, price, quantity } = item;
+  const { image, name, _id, price, quantity, aisle } = item;
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const { cart } = state;
@@ -46,6 +46,7 @@ function ProductItem(item) {
             name={name}
             price={price}
             quantity={quantity}
+            aisle={aisle}
           />
           <Card.Text>{quantity} in stock</Card.Text>
           <Card.Text>${price}</Card.Text>

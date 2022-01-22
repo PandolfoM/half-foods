@@ -8,8 +8,8 @@ const productSchema = new Schema({
     required: true,
     trim: true
   },
-  description: {
-    type: String
+  aisle : {
+    type: Number,
   },
   image: {
     type: String

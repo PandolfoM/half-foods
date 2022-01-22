@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Button, Offcanvas, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  UPDATE_CART_QUANTITY,
+} from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
 function Details(item) {
-  const { image, name, _id, price, quantity } = item;
+  const { image, name, _id, price, quantity, aisle } = item;
   const [show, setShow] = useState(false);
 
   const state = useSelector((state) => state);
@@ -70,10 +74,31 @@ function Details(item) {
               </span>
             </Row>
             <Row className="m-2">
-              <Button onClick={addToCart}>Add to Cart</Button>
+              <span className="p-0">
+                <strong>Stock: </strong>
+                {quantity}
+              </span>
+            </Row>
+            {aisle ? (
+              <Row className="m-2">
+                <span className="p-0">
+                  <strong>Aisle: </strong>
+                  {aisle}
+                </span>
+              </Row>
+            ) : null}
+            <Row className="m-2">
+              <Button variant="success" onClick={addToCart}>
+                Add to Cart
+              </Button>
             </Row>
             <Row className="m-2">
-              <Button disabled={!cart.find(p => p._id === _id)} onClick={removeFromCart}>Remove from Cart</Button>
+              <Button
+                variant="outline-danger"
+                disabled={!cart.find((p) => p._id === _id)}
+                onClick={removeFromCart}>
+                Remove from Cart
+              </Button>
             </Row>
           </Container>
         </Offcanvas.Body>

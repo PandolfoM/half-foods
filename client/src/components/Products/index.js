@@ -52,6 +52,7 @@ function Products() {
               name={product.name}
               price={product.price}
               quantity={product.quantity}
+              aisle={product.aisle}
             />
           ))}
         </Row>

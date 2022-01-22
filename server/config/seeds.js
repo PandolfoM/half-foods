@@ -17,27 +17,23 @@ db.once('open', async () => {
   const products = await Product.insertMany([
     {
       name: 'Oreo',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       image: 'oreo.png',
       category: categories[0]._id,
+      aisle: 4,
       price: 2.99,
       quantity: 100
     },
     {
       name: 'Snapple',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
       image: 'snapple.png',
       category: categories[0]._id,
+      aisle: 2,
       price: 1.99,
       quantity: 100
     },
     {
       name: 'Leeks',
       category: categories[1]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
       image: 'leeks.png',
       price: 7.99,
       quantity: 50
@@ -45,8 +41,6 @@ db.once('open', async () => {
     {
       name: 'Brocoli',
       category: categories[1]._id,
-      description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
       image: 'brocoli.png',
       price: 3.99,
       quantity: 50
@@ -54,8 +48,6 @@ db.once('open', async () => {
     {
       name: 'Filet Mignon',
       category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
       image: 'filetmignon.png',
       price: 50.00,
       quantity: 20
@@ -63,8 +55,6 @@ db.once('open', async () => {
     {
       name: 'Ground Beef',
       category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
       image: 'groundBeef.png',
       price: 24.99,
       quantity: 40
@@ -72,8 +62,6 @@ db.once('open', async () => {
     {
       name: 'Milk',
       category: categories[3]._id,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
       image: 'milk.png',
       price: 4.99,
       quantity: 230
@@ -81,7 +69,6 @@ db.once('open', async () => {
     {
       name: 'Butter',
       category: categories[3]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
       image: 'butter.png',
       price: 1.99,
       quantity: 355
@@ -89,7 +76,6 @@ db.once('open', async () => {
     {
       name: 'Ice Cream',
       category: categories[4]._id,
-      description: 'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
       image: 'iceCream.png',
       price: 6.99,
       quantity: 500
@@ -97,8 +83,6 @@ db.once('open', async () => {
     {
       name: 'Ice Pop',
       category: categories[4]._id,
-      description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
       image: 'icePop.png',
       price: 3.99,
       quantity: 500
