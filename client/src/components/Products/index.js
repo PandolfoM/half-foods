@@ -6,6 +6,7 @@ import { UPDATE_PRODUCTS } from "../../utils/actions";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import { idbPromise } from "../../utils/helpers";
 import { Row, Spinner } from "react-bootstrap";
 import ProductItem from "../ProductItem";
 
@@ -21,6 +22,10 @@ function Products() {
       dispatch({
         type: UPDATE_PRODUCTS,
         products: data.products,
+      });
+
+      data.products.forEach((product) => {
+        idbPromise("products", "put", product);
       });
     }
   }, [data, dispatch]);

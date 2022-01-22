@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Col, Card, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import Details from "../Details";
 
 function ProductItem(item) {
   const { image, name, _id, price, quantity } = item;
@@ -40,9 +40,13 @@ function ProductItem(item) {
           <Card.Img variant="top" src={`/img/${image}`} height={"160px"} />
         </Container>
         <Card.Body>
-          <Link to={`/products/${_id}`}>
-            <Card.Title>{name}</Card.Title>
-          </Link>
+          <Details
+            _id={_id}
+            image={image}
+            name={name}
+            price={price}
+            quantity={quantity}
+          />
           <Card.Text>{quantity} in stock</Card.Text>
           <Card.Text>${price}</Card.Text>
           <Button

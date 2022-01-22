@@ -7,6 +7,7 @@ import {
 } from "../../utils/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
+import {idbPromise} from '../../utils/helpers'
 
 function CategoryMenu() {
   const state = useSelector((state) => state);
@@ -19,6 +20,9 @@ function CategoryMenu() {
       dispatch({
         type: UPDATE_CATEGORIES,
         categories: categoryData.categories,
+      });
+      categoryData.categories.forEach((category) => {
+        idbPromise("categories", "put", category);
       });
     }
   }, [categoryData, loading, dispatch]);
