@@ -9,6 +9,7 @@ import {
   FormControl
 } from "react-bootstrap";
 
+import Cart from "../Cart/index";
 import logo from "../../assets/halffoods.svg";
 
 function NavEL() {
@@ -61,6 +62,7 @@ function NavEL() {
                 <Link to={"/"}>Browse Products</Link>
               </Nav.Item>
             </Nav>
+            <Cart/>
             {Navigation()}
           </Navbar.Collapse>
         </Container>

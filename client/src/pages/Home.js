@@ -7,7 +7,7 @@ function Home() {
   return (
     <div>
       <CategoryMenu />
-      <Products/>
+      <Products />
     </div>
   );
 }

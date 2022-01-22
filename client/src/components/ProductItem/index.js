@@ -1,21 +1,56 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col, Card, Button } from "react-bootstrap";
+import { Col, Card, Button, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
 
 function ProductItem(item) {
   const { image, name, _id, price, quantity } = item;
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { cart } = state;
+
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === _id);
+
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: _id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+      idbPromise("cart", "put", {
+        ...itemInCart,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...item, purchaseQuantity: 1 },
+      });
+      idbPromise("cart", "put", { ...item, purchaseQuantity: 1 });
+    }
+  };
 
   return (
     <Col className="mb-2">
       <Card>
-        <Card.Img variant="top" src={`/img/${image}`} height={"180px"} />
+        <Container>
+          <Card.Img variant="top" src={`/img/${image}`} height={"160px"} />
+        </Container>
         <Card.Body>
           <Link to={`/products/${_id}`}>
             <Card.Title>{name}</Card.Title>
           </Link>
           <Card.Text>{quantity} in stock</Card.Text>
           <Card.Text>${price}</Card.Text>
-          <Button variant="success" style={{width: '100%'}}>Add to Cart</Button>
+          <Button
+            variant="success"
+            style={{ width: "100%" }}
+            onClick={addToCart}>
+            Add to Cart
+          </Button>
         </Card.Body>
       </Card>
     </Col>

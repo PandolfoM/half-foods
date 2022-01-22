@@ -7,10 +7,29 @@
   padding: 0%;
   box-sizing: border-box;
   font-family: "Circular Pro", Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
 
 li {
   list-style: none;
+}
+
+/* Nav Bar */
+.halfFoods {
+  text-decoration: none;
+  border-right: white solid 3px;
+}
+
+#navbarScroll > div:nth-child(1n+2) {
+  padding: 0 15px;
+}
+
+.cart-closed > span {
+  padding-left: 3px;
+}
+
+.cart-closed {
+  cursor: pointer;
 }
 
 .nav-item > a {
@@ -22,12 +41,6 @@ li {
 .nav-item > a:hover {
   color: white;
   border-bottom: 3px white solid;
-}
-
-/* Nav Bar */
-.halfFoods {
-  text-decoration: none;
-  border-right: white solid 3px;
 }
 
 /* Item cards */

@@ -6,7 +6,7 @@ import { UPDATE_PRODUCTS } from "../../utils/actions";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { Row } from "react-bootstrap";
+import { Row, Spinner } from "react-bootstrap";
 import ProductItem from "../ProductItem";
 
 function Products() {
@@ -36,7 +36,7 @@ function Products() {
   }
 
   return (
-    <div className="my-2">
+    <div>
       {state.products.length ? (
         <Row xs={1} md={6} className="m-5">
           {filterItems().map((product) => (
@@ -53,7 +53,7 @@ function Products() {
       ) : (
         <h3>Sorry no products for you :(</h3>
       )}
-      {/* {loading ? <img src={spinner} alt="loading" /> : null} */}
+      {loading ? <Spinner animation="border" variant="success" /> : null}
     </div>
   );
 }
