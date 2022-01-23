@@ -14,6 +14,10 @@ li {
   list-style: none;
 }
 
+ul {
+  display: flex;
+}
+
 /* Nav Bar */
 .halfFoods {
   text-decoration: none;
@@ -56,4 +60,8 @@ li {
 
 .card:hover {
   box-shadow: inset 0 -4px 0 0 #198754; 
+}
+
+.dropdown-toggle {
+  margin-right: 5px
 }

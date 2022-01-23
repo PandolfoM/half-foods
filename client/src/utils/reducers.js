@@ -2,7 +2,9 @@ import {
   UPDATE_PRODUCTS,
   UPDATE_CURRENT_PRODUCTS,
   UPDATE_CATEGORIES,
+  UPDATE_DIETS,
   UPDATE_CURRENT_CATEGORY,
+  UPDATE_CURRENT_DIETS,
   ADD_TO_CART,
   ADD_MULTIPLE_TO_CART,
   REMOVE_FROM_CART,
@@ -17,6 +19,8 @@ const initialState = {
   cart: [],
   cartOpen: false,
   categories: [],
+  diets: [],
+  currentDiet: "",
   currentCategory: "",
 };
 
@@ -37,11 +41,22 @@ export const reducer = (state = initialState, action) => {
         ...state,
         categories: [...action.categories],
       };
+    case UPDATE_DIETS:
+      return {
+        ...state,
+        diets: [...action.diets],
+      };
 
     case UPDATE_CURRENT_CATEGORY:
       return {
         ...state,
         currentCategory: action.currentCategory,
+      };
+
+    case UPDATE_CURRENT_DIETS:
+      return {
+        ...state,
+        currentDiet: action.currentDiet,
       };
 
     case ADD_TO_CART:

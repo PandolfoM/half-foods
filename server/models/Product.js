@@ -11,6 +11,10 @@ const productSchema = new Schema({
   aisle : {
     type: Number,
   },
+  diet: {
+    type: Schema.Types.ObjectId,
+    ref: 'Diet',
+  },
   image: {
     type: String
   },

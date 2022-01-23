@@ -1,15 +1,33 @@
 const db = require('./connection');
-const { User, Product, Category } = require('../models');
+const { User, Product, Category, Diet } = require('../models');
 
 db.once('open', async () => {
   await Category.deleteMany();
+  await Diet.deleteMany();
 
   const categories = await Category.insertMany([
     { name: 'Grocery' },
     { name: 'Produce' },
     { name: 'Meat' },
     { name: 'Dairy' },
-    { name: 'Frozen' }
+    { name: 'Frozen Food' },
+    { name: 'Beverages' },
+    { name: 'Bakery' },
+  ]);
+
+  const diets = await Diet.insertMany([
+    { name: 'Vegan' }, // 0
+    { name: 'Gluten-Free' }, // 1
+    { name: 'Keto-Friendly' }, // 2
+    { name: 'Vegetarian' }, // 3
+    { name: 'Organic' }, // 4
+    { name: 'Dairy-Free' }, // 5
+    { name: 'Sugar-Conscious' }, // 6
+    { name: 'Paleo-Friendly' }, // 7
+    { name: 'Low-Sodium' }, // 8
+    { name: 'Kosher' }, // 9
+    { name: 'Low-Fat' }, // 10
+    { name: 'Engine 2' }, // 11
   ]);
 
   await Product.deleteMany();
@@ -19,6 +37,7 @@ db.once('open', async () => {
       name: 'Oreo',
       image: 'oreo.png',
       category: categories[0]._id,
+      diet: diets[0]._id,
       aisle: 4,
       price: 2.99,
       quantity: 100
@@ -27,13 +46,15 @@ db.once('open', async () => {
       name: 'Snapple',
       image: 'snapple.png',
       category: categories[0]._id,
+      diet: diets[2]._id,
       aisle: 2,
       price: 1.99,
       quantity: 100
     },
     {
       name: 'Leeks',
-      category: categories[1]._id,
+      category: categories[0]._id,
+      diet: diets[0,1,2]._id,
       image: 'leeks.png',
       price: 7.99,
       quantity: 50
@@ -41,6 +62,7 @@ db.once('open', async () => {
     {
       name: 'Brocoli',
       category: categories[1]._id,
+      diet: diets[0,1,2]._id,
       image: 'brocoli.png',
       price: 3.99,
       quantity: 50
@@ -48,6 +70,7 @@ db.once('open', async () => {
     {
       name: 'Filet Mignon',
       category: categories[2]._id,
+      diet: diets[5]._id,
       image: 'filetmignon.png',
       price: 50.00,
       quantity: 20
@@ -55,6 +78,7 @@ db.once('open', async () => {
     {
       name: 'Ground Beef',
       category: categories[2]._id,
+      diet: diets[5,8]._id,
       image: 'groundBeef.png',
       price: 24.99,
       quantity: 40
@@ -62,6 +86,7 @@ db.once('open', async () => {
     {
       name: 'Milk',
       category: categories[3]._id,
+      diet: diets[9]._id,
       image: 'milk.png',
       price: 4.99,
       quantity: 230
@@ -70,6 +95,7 @@ db.once('open', async () => {
       name: 'Butter',
       category: categories[3]._id,
       image: 'butter.png',
+      diet: diets[9]._id,
       price: 1.99,
       quantity: 355
     },
@@ -77,6 +103,7 @@ db.once('open', async () => {
       name: 'Ice Cream',
       category: categories[4]._id,
       image: 'iceCream.png',
+      diet: diets[3]._id,
       price: 6.99,
       quantity: 500
     },
@@ -84,6 +111,7 @@ db.once('open', async () => {
       name: 'Ice Pop',
       category: categories[4]._id,
       image: 'icePop.png',
+      diet: diets[1]._id,
       price: 3.99,
       quantity: 500
     }

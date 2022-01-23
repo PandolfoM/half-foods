@@ -14,7 +14,7 @@ function Products() {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const { currentCategory } = state;
+  const { currentCategory, currentDiet } = state;
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   useEffect(() => {
@@ -30,13 +30,24 @@ function Products() {
     }
   }, [data, dispatch]);
 
-  function filterItems() {
+  function filterCategory() {
     if (!currentCategory) {
       return state.products;
     }
 
     return state.products.filter(
-      (product) => product.category._id === currentCategory
+      (product) =>
+        product.category._id === currentCategory
+    );
+  }
+
+  function filterDiet() {
+    if (!currentDiet) {
+      return state.products;
+    }
+
+    return state.products.filter(
+      (product) => product.diet._id === currentDiet
     );
   }
 
@@ -44,17 +55,35 @@ function Products() {
     <div>
       {state.products.length ? (
         <Row xs={1} md={6} className="m-5">
-          {filterItems().map((product) => (
-            <ProductItem
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
-              aisle={product.aisle}
-            />
-          ))}
+          {currentCategory ? (
+            <>
+              {filterCategory().map((product) => (
+                <ProductItem
+                  key={product._id}
+                  _id={product._id}
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                  quantity={product.quantity}
+                  aisle={product.aisle}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {filterDiet().map((product) => (
+                <ProductItem
+                  key={product._id}
+                  _id={product._id}
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                  quantity={product.quantity}
+                  aisle={product.aisle}
+                />
+              ))}
+            </>
+          )}
         </Row>
       ) : (
         <h3>Sorry no products for you :(</h3>

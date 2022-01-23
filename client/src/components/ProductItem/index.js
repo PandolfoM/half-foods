@@ -6,7 +6,7 @@ import { idbPromise } from "../../utils/helpers";
 import Details from "../Details";
 
 function ProductItem(item) {
-  const { image, name, _id, price, quantity, aisle } = item;
+  const { image, name, _id, price, quantity, aisle} = item;
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const { cart } = state;

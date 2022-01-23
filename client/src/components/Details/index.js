@@ -9,7 +9,7 @@ import {
 import { idbPromise } from "../../utils/helpers";
 
 function Details(item) {
-  const { image, name, _id, price, quantity, aisle } = item;
+  const { image, name, _id, price, quantity, aisle, diet } = item;
   const [show, setShow] = useState(false);
 
   const state = useSelector((state) => state);

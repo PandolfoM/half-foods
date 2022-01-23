@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order } = require("../models");
+const { User, Product, Category, Order, Diet } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,12 +7,19 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    products: async (parent, { category, name }) => {
+    diets: async () => {
+      return await Diet.find();
+    },
+    products: async (parent, { category, name, diet }) => {
       const params = {};
       console.log(params);
 
       if (category) {
         params.category = category;
+      }
+
+      if (diet) {
+        params.diet = diet;
       }
 
       if (name) {
@@ -21,16 +28,17 @@ const resolvers = {
         };
       }
 
-      return await Product.find(params).populate("category");
+      return await Product.find(params).populate("category").populate("diet");
     },
     product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate("category");
+      return await Product.findById(_id).populate("category").populate("diet");
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
           populate: "category",
+          populate: "diet",
         });
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
@@ -45,6 +53,7 @@ const resolvers = {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
           populate: "category",
+          populate: "diet",
         });
 
         return user.orders.id(_id);
