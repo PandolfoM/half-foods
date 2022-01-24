@@ -7,14 +7,6 @@ const mapStyles = {
   height: "70%",
 };
 
-const stores = [
-  {
-    name: "Half Foods",
-    location: { lat: 41.66911405372323, lng: -72.70033759571575 },
-    hours: "7AM to 9PM",
-  },
-];
-
 export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,

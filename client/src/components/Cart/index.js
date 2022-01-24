@@ -95,7 +95,8 @@ const Cart = () => {
           ) : (
             <>
               <strong>Total: ${calculateTotal()}</strong>
-              <Button variant="success" onClick={toggleCart}>
+              <Button variant="success" onClick={toggleCart}><Link to={'/checkout'}>Checkout</Link></Button>
+              <Button variant="danger" onClick={toggleCart}>
                 Close
               </Button>
             </>
@@ -107,14 +108,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-/*
-  <div>
-    
-    {Auth.loggedIn() ? (
-      <Button variant="success" onClick={submitCheckout}>Checkout</Button>
-    ) : (
-      <span>(login to checkout)</span>
-    )}
-  </div>
-*/
