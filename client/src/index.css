@@ -36,6 +36,10 @@ ul {
   cursor: pointer;
 }
 
+.nav-item {
+  margin-right: 10px;
+}
+
 .nav-item > a {
   text-decoration: none;
   color: white;

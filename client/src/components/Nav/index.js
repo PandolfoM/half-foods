@@ -59,7 +59,10 @@ function NavEL() {
               style={{ maxHeight: "100px" }}
               navbarScroll>
               <Nav.Item>
-                <Link to={"/"}>Browse Products</Link>
+                <Link to={"/products"}>Browse Products</Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link to={"/stores"}>Store Locations</Link>
               </Nav.Item>
             </Nav>
             <Cart/>
