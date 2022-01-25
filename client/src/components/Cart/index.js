@@ -9,10 +9,13 @@ import { idbPromise } from "../../utils/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { Modal, Button, Container } from "react-bootstrap";
+import { QUERY_CHECKOUT } from "../../utils/queries";
+import { useLazyQuery } from "@apollo/client";
 
 const Cart = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
     async function getCart() {
@@ -47,6 +50,22 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
+  function submitCheckout(e) {
+    e.preventDefault()
+    dispatch({ type: TOGGLE_CART });
+    const productIds = [];
+
+    state.cart.forEach((item) => {
+      for (let i = 0; i < item.purchaseQuantity; i++) {
+        productIds.push(item._id);
+      }
+    });
+
+    getCheckout({
+      variables: { products: productIds },
+    });
+  }
+
   return (
     <Modal show={toggleCart} onHide={toggleCart} size="lg" centered>
       <Modal.Header closeButton>
@@ -78,7 +97,7 @@ const Cart = () => {
           ) : (
             <>
               <strong>Total: ${calculateTotal()}</strong>
-              <Button variant="success" onClick={toggleCart}><Link to={'/checkout'}>Checkout</Link></Button>
+              <Button variant="success" onClick={submitCheckout}><Link to={'/checkout'}>Checkout</Link></Button>
               <Button variant="danger" onClick={toggleCart}>
                 Close
               </Button>

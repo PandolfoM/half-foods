@@ -17,7 +17,7 @@ function NavEL() {
       return (
         <>
           <Nav.Item>
-            <Link to="/orderHistory">Order History</Link>
+            <Link to="/orders">Order History</Link>
           </Nav.Item>
           <Nav.Item>
             <a href="/" onClick={() => Auth.logout()}>
