@@ -18,6 +18,7 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
+import Orders from "./pages/Orders";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -52,6 +53,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/checkout" component={Checkout} />
               <Route exact path="/success" component={Success} />
+              <Route exact path="/orders" component={Orders} />
             </Switch>
           </div>
         </Provider>
