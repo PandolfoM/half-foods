@@ -51,6 +51,7 @@ const Cart = () => {
   }
 
   function submitCheckout() {
+    dispatch({ type: TOGGLE_CART });
     const productIds = [];
 
     state.cart.forEach((item) => {
@@ -95,7 +96,7 @@ const Cart = () => {
           ) : (
             <>
               <strong>Total: ${calculateTotal()}</strong>
-              <Button variant="success" onClick={toggleCart}><Link to={'/checkout'}>Checkout</Link></Button>
+              <Button variant="success" onClick={submitCheckout}><Link to={'/checkout'}>Checkout</Link></Button>
               <Button variant="danger" onClick={toggleCart}>
                 Close
               </Button>

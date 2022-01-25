@@ -69,3 +69,13 @@ ul {
 .dropdown-toggle {
   margin-right: 5px
 }
+
+/* Checkout */
+#checkoutDiv {
+  width: 50%;
+  margin: auto;
+}
+
+#pay {
+  width: 100%;
+}

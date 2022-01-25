@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-const API_KEY = "AIzaSyDrV8N-sRQKTmas_bhhkryzGP0uVovCo4A";
 
 const mapStyles = {
   width: "45%",
