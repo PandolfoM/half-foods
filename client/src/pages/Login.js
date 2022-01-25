@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../utils/mutations';
-import Auth from '../utils/auth';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+import { LOGIN } from "../utils/mutations";
+import Auth from "../utils/auth";
+import { Form, Button, Row, Container } from "react-bootstrap";
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
+    console.log(formState);
     event.preventDefault();
     try {
       const mutationResponse = await login({
@@ -23,6 +25,8 @@ function Login(props) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log(name, value);
+    console.log(formState);
     setFormState({
       ...formState,
       [name]: value,
@@ -30,43 +34,48 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <Link to="/signup">← Go to Signup</Link>
-
-      <h2>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label htmlFor="email">Email address:</label>
-          <input
-            placeholder="youremail@test.com"
+    <>
+      <Form id="loginForm" onSubmit={handleFormSubmit}>
+        <Form.Group>
+          <Form.Label htmlFor="email">Email address:</Form.Label>
+          <Form.Control
             name="email"
-            type="email"
             id="email"
-            autoComplete='on'
+            type="email"
+            placeholder="Email"
+            autoComplete="on"
             onChange={handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="pwd">Password:</label>
-          <input
-            placeholder="******"
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="password">Password:</Form.Label>
+          <Form.Control
             name="password"
+            id="password"
             type="password"
-            id="pwd"
-            autoComplete='on'
+            placeholder="Password"
+            autoComplete="on"
             onChange={handleChange}
           />
-        </div>
+          <Form.Text className="text-muted">Shhhhh</Form.Text>
+        </Form.Group>
         {error ? (
-          <div>
+          <Form.Text>
             <p>The provided credentials are incorrect</p>
-          </div>
+          </Form.Text>
         ) : null}
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+        <Form.Group>
+          <Container>
+          <Row>
+          <Button variant="outline-success" type="submit">
+            Login
+          </Button>
+          </Row>
+          </Container>
+          <Link to="/signup" id="createAccount">Create Account</Link>
+        </Form.Group>
+      </Form>
+    </>
   );
 }
 
