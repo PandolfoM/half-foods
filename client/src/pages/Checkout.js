@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import dropin from "braintree-web-drop-in";
-import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Button, useAccordionButton } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import jQuery from "jquery";
+import { CLEAR_CART } from "../utils/actions";
+import Success from "./Success";
 
 function Checkout() {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const pay = document.getElementById("pay");
@@ -18,25 +21,23 @@ function Checkout() {
         },
       })
       .then((instance) => {
-        console.log(calculateTotal());
         pay.addEventListener("click", (event) => {
           event.preventDefault();
-          instance
-            .requestPaymentMethod()
-            .then((payload) => {
-              jQuery.ajax({
-                type: "POST",
-                url: "/checkout",
-                data: ({
-                  paymentMethodNonce: payload.nonce, 
-                  totalPrice: calculateTotal()
-                }),
-              });
-            })
-            .catch((err) => {
-              throw err;
+          instance.requestPaymentMethod().then((payload) => {
+            jQuery.ajax({
+              type: "POST",
+              url: "/checkout",
+              data: {
+                paymentMethodNonce: payload.nonce,
+                totalPrice: calculateTotal(),
+              },
             });
-        });
+          }).then(() => {
+            setTimeout(() => {
+              window.location.assign('/success')
+            }, 1500)
+          })
+        })
       })
       .catch((err) => {
         throw err;
@@ -44,7 +45,7 @@ function Checkout() {
   });
 
   function calculateTotal() {
-    let sum = 0
+    let sum = 0;
 
     state.cart.forEach((item) => {
       sum += item.price * item.purchaseQuantity;
@@ -60,7 +61,6 @@ function Checkout() {
       <Button variant="outline-success" id="pay">
         Pay
       </Button>
-      <input type={"hidden"} id="payment_method_nonce"></input>
     </div>
   );
 }

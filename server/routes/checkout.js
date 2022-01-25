@@ -12,7 +12,7 @@ router.post("/", (req, res, next) => {
 
   const nonceFromTheClient = req.body.paymentMethodNonce;
   const total = req.body.totalPrice;
-  
+
   const newTransaction = gateway.transaction.sale(
     {
       amount: total,
@@ -22,10 +22,10 @@ router.post("/", (req, res, next) => {
       },
     },
     (error, result) => {
-      if (result) {
+      if (result.success) {
         res.send(result);
       } else {
-        res.status(500).send(error);
+        console.error(result.errors);
       }
     }
   );
