@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import dropin from "braintree-web-drop-in";
-import { Button, useAccordionButton } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import jQuery from "jquery";
-import { CLEAR_CART } from "../utils/actions";
-import Success from "./Success";
 
 function Checkout() {
   const state = useSelector((state) => state);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const pay = document.getElementById("pay");

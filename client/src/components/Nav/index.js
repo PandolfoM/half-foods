@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import {
   Navbar,
   Nav,
   Container,
-  Form,
-  FormControl
 } from "react-bootstrap";
 
 import Cart from "../Cart/index";

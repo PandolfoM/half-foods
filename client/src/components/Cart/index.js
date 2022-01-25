@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import Auth from "../../utils/auth";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { Link } from "react-router-dom";
-import { QUERY_CHECKOUT } from "../../utils/queries";
 import { useDispatch, useSelector } from "react-redux";
-import { useLazyQuery } from "@apollo/client";
 import CartItem from "../CartItem";
 import { idbPromise } from "../../utils/helpers";
 
@@ -15,7 +13,6 @@ import { Modal, Button, Container } from "react-bootstrap";
 const Cart = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
     async function getCart() {
@@ -50,21 +47,6 @@ const Cart = () => {
     return sum.toFixed(2);
   }
 
-  function submitCheckout() {
-    dispatch({ type: TOGGLE_CART });
-    const productIds = [];
-
-    state.cart.forEach((item) => {
-      for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
-      }
-    });
-
-    getCheckout({
-      variables: { products: productIds },
-    });
-  }
-
   return (
     <Modal show={toggleCart} onHide={toggleCart} size="lg" centered>
       <Modal.Header closeButton>
@@ -96,7 +78,7 @@ const Cart = () => {
           ) : (
             <>
               <strong>Total: ${calculateTotal()}</strong>
-              <Button variant="success" onClick={submitCheckout}><Link to={'/checkout'}>Checkout</Link></Button>
+              <Button variant="success" onClick={toggleCart}><Link to={'/checkout'}>Checkout</Link></Button>
               <Button variant="danger" onClick={toggleCart}>
                 Close
               </Button>
