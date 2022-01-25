@@ -18,6 +18,15 @@ ul {
   display: flex;
 }
 
+.btn > a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn > a:hover {
+  color: inherit;
+}
+
 /* Nav Bar */
 .halfFoods {
   text-decoration: none;
@@ -26,6 +35,14 @@ ul {
 
 #navbarScroll > div:nth-child(1n+2) {
   padding: 0 15px;
+}
+
+#trashcan {
+  margin: auto;
+}
+#trashcan > svg {
+  margin: 10px;
+  font-size: 1.2rem;
 }
 
 .cart-closed > span {
@@ -94,4 +111,13 @@ ul {
   text-decoration: none;
   color: gray;
   font-size: 12px;
+}
+
+/* Home page */
+:is(.carousel-caption) h5, p {
+  font-weight: 800;
+}
+
+.carousel-inner {
+  border-radius: 15px;
 }

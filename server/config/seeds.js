@@ -6,13 +6,14 @@ db.once('open', async () => {
   await Diet.deleteMany();
 
   const categories = await Category.insertMany([
-    { name: 'Grocery' },
-    { name: 'Produce' },
-    { name: 'Meat' },
-    { name: 'Dairy' },
-    { name: 'Frozen Food' },
-    { name: 'Beverages' },
-    { name: 'Bakery' },
+    { name: 'Grocery' }, // 0
+    { name: 'Produce' }, // 1
+    { name: 'Meat' }, // 2
+    { name: 'Seafood' }, // 3
+    { name: 'Dairy' }, // 4
+    { name: 'Frozen Food' }, // 5
+    { name: 'Beverages' }, // 6
+    { name: 'Bakery' }, // 7
   ]);
 
   const diets = await Diet.insertMany([
@@ -33,88 +34,118 @@ db.once('open', async () => {
   await Product.deleteMany();
 
   const products = await Product.insertMany([
+    // Vegan
     {
-      name: 'Oreo',
-      image: 'oreo.png',
-      category: categories[0]._id,
+      name: 'Apple',
+      image: 'apple.jpg',
+      category: categories[1]._id,
       diet: diets[0]._id,
       aisle: 4,
-      price: 2.99,
-      quantity: 100
-    },
-    {
-      name: 'Snapple',
-      image: 'snapple.png',
-      category: categories[0]._id,
-      diet: diets[2]._id,
-      aisle: 2,
       price: 1.99,
-      quantity: 100
+      quantity: 500
     },
     {
-      name: 'Leeks',
-      category: categories[0]._id,
-      diet: diets[0,1,2]._id,
-      image: 'leeks.png',
-      price: 7.99,
-      quantity: 50
-    },
-    {
-      name: 'Brocoli',
+      name: 'Avocado',
+      image: 'avocado.jpg',
       category: categories[1]._id,
-      diet: diets[0,1,2]._id,
-      image: 'brocoli.png',
-      price: 3.99,
-      quantity: 50
-    },
-    {
-      name: 'Filet Mignon',
-      category: categories[2]._id,
-      diet: diets[5]._id,
-      image: 'filetmignon.png',
-      price: 50.00,
-      quantity: 20
-    },
-    {
-      name: 'Ground Beef',
-      category: categories[2]._id,
-      diet: diets[5,8]._id,
-      image: 'groundBeef.png',
-      price: 24.99,
-      quantity: 40
-    },
-    {
-      name: 'Milk',
-      category: categories[3]._id,
-      diet: diets[9]._id,
-      image: 'milk.png',
+      diet: diets[0]._id,
+      aisle: 4,
       price: 4.99,
-      quantity: 230
+      quantity: 500
     },
     {
-      name: 'Butter',
-      category: categories[3]._id,
-      image: 'butter.png',
-      diet: diets[9]._id,
-      price: 1.99,
-      quantity: 355
+      name: 'Broccoli',
+      image: 'broccoli.jpg',
+      category: categories[1]._id,
+      diet: diets[0]._id,
+      aisle: 4,
+      price: 0.99,
+      quantity: 500
     },
+    // GF
     {
-      name: 'Ice Cream',
+      name: 'Almond Milk',
+      image: 'almondMilk.jpg',
       category: categories[4]._id,
-      image: 'iceCream.png',
+      diet: diets[1]._id,
+      aisle: 4,
+      price: 0.99,
+      quantity: 500
+    },
+    {
+      name: 'Greek Yogurt',
+      image: 'greekYog.jpg',
+      category: categories[4]._id,
+      diet: diets[1]._id,
+      aisle: 4,
+      price: 0.99,
+      quantity: 500
+    },
+    {
+      name: 'Le Gruyère',
+      image: 'gruyere.jpg',
+      category: categories[4]._id,
+      diet: diets[1]._id,
+      aisle: 4,
+      price: 0.99,
+      quantity: 500
+    },
+    // Keto-Friendly
+    {
+      name: 'Salmon',
+      image: 'salmon.jpg',
+      category: categories[3]._id,
+      diet: diets[2]._id,
+      aisle: 4,
+      price: 23.99,
+      quantity: 500
+    },
+    {
+      name: 'New York Strip',
+      image: 'nystrip.jpg',
+      category: categories[2]._id,
+      diet: diets[2]._id,
+      aisle: 4,
+      price: 39.99,
+      quantity: 500
+    },
+    {
+      name: 'Raspberries',
+      image: 'raspberries.jpg',
+      category: categories[1]._id,
+      diet: diets[2]._id,
+      aisle: 4,
+      price: 2.99,
+      quantity: 500
+    },
+    // Vegetarian
+    {
+      name: 'Eggs',
+      image: 'eggs.jpg',
+      category: categories[0]._id,
       diet: diets[3]._id,
+      aisle: 4,
       price: 6.99,
       quantity: 500
     },
     {
-      name: 'Ice Pop',
-      category: categories[4]._id,
-      image: 'icePop.png',
+      name: 'Green Squash',
+      image: 'greenSquash.jpg',
+      category: categories[1]._id,
       diet: diets[1]._id,
-      price: 3.99,
+      aisle: 4,
+      price: 1.99,
       quantity: 500
-    }
+    },
+    {
+      name: 'Tomato',
+      image: 'tomato.jpg',
+      category: categories[1]._id,
+      diet: diets[1]._id,
+      aisle: 4,
+      price: 1.99,
+      quantity: 500
+    },
   ]);
 
   await User.deleteMany();
