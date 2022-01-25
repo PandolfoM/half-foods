@@ -91,60 +91,6 @@ function Signup(props) {
         </Form.Group>
       </Form>
     </>
-    // <div>
-    //   <Link to="/login">← Go to Login</Link>
-
-    //   <h2>Signup</h2>
-    //   <form onSubmit={handleFormSubmit}>
-    //     <div>
-    //       <label htmlFor="firstName">First Name:</label>
-    //       <input
-    //         placeholder="First"
-    //         name="firstName"
-    //         type="firstName"
-    //         id="firstName"
-    //         autoComplete='on'
-    //         onChange={handleChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="lastName">Last Name:</label>
-    //       <input
-    //         placeholder="Last"
-    //         name="lastName"
-    //         type="lastName"
-    //         id="lastName"
-    //         autoComplete='on'
-    //         onChange={handleChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="email">Email:</label>
-    //       <input
-    //         placeholder="youremail@test.com"
-    //         name="email"
-    //         type="email"
-    //         id="email"
-    //         autoComplete='on'
-    //         onChange={handleChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="pwd">Password:</label>
-    //       <input
-    //         placeholder="******"
-    //         name="password"
-    //         type="password"
-    //         id="pwd"
-    //         autoComplete='on'
-    //         onChange={handleChange}
-    //       />
-    //     </div>
-    //     <div>
-    //       <button type="submit">Submit</button>
-    //     </div>
-    //   </form>
-    // </div>
   );
 }
 
