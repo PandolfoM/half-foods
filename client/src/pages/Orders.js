@@ -1,8 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 function Orders() {
   const { data } = useQuery(QUERY_USER);
