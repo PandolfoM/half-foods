@@ -17,7 +17,7 @@ Online grocery shopping where you can order food in advanced and pick it up late
 * Google Maps
   
 ## Website
-[Deployed Site](https://mattpandolfo.com/)
+[Deployed Site](https://half-foods.herokuapp.com/)
 
 ## Site Preview
 ![Preview](./halffoods.jpeg)
